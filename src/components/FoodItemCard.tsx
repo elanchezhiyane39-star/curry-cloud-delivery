@@ -11,8 +11,22 @@ interface FoodItemCardProps {
 }
 
 export const FoodItemCard = ({ item, quantity, onAdd, onRemove }: FoodItemCardProps) => {
+  const getCategoryEmoji = () => {
+    switch(item.category) {
+      case 'indian-food': return '🍛';
+      case 'juices': return '🥤';
+      case 'snacks': return '🍟';
+      case 'ice-cream': return '🍨';
+      default: return '🍴';
+    }
+  };
+
   return (
-    <Card className="overflow-hidden transition-all hover:shadow-lg">
+    <Card className="overflow-hidden transition-all hover:shadow-xl hover:scale-105 border-2 border-border/50 bg-gradient-to-br from-card to-card/80">
+      <div className="relative h-32 bg-gradient-to-br from-star-gold/20 via-star-orange/20 to-canteen-red/20 flex items-center justify-center">
+        <span className="text-7xl drop-shadow-lg">{getCategoryEmoji()}</span>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+      </div>
       <CardHeader className="pb-3">
         <CardTitle className="text-lg">{item.name}</CardTitle>
         {item.description && (
@@ -20,7 +34,9 @@ export const FoodItemCard = ({ item, quantity, onAdd, onRemove }: FoodItemCardPr
         )}
       </CardHeader>
       <CardContent className="pb-3">
-        <p className="text-2xl font-bold text-primary">₹{item.price}</p>
+        <p className="text-2xl font-bold bg-gradient-to-r from-star-orange to-canteen-red bg-clip-text text-transparent">
+          ₹{item.price}
+        </p>
       </CardContent>
       <CardFooter className="flex justify-between gap-2">
         {quantity === 0 ? (

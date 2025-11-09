@@ -11,24 +11,22 @@ interface FoodItemCardProps {
 }
 
 export const FoodItemCard = ({ item, quantity, onAdd, onRemove }: FoodItemCardProps) => {
-  const getCategoryEmoji = () => {
-    switch(item.category) {
-      case 'indian-food': return '🍛';
-      case 'juices': return '🥤';
-      case 'snacks': return '🍟';
-      case 'ice-cream': return '🍨';
-      default: return '🍴';
-    }
-  };
-
   return (
     <Card className="overflow-hidden transition-all hover:shadow-xl hover:scale-105 border-2 border-border/50 bg-gradient-to-br from-card to-card/80">
-      <div className="relative h-32 bg-gradient-to-br from-star-gold/20 via-star-orange/20 to-canteen-red/20 flex items-center justify-center">
-        <span className="text-7xl drop-shadow-lg">{getCategoryEmoji()}</span>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+      <div className="relative h-48 bg-gradient-to-br from-star-gold/20 via-star-orange/20 to-canteen-red/20 flex items-center justify-center overflow-hidden">
+        {item.image && (
+          <img 
+            src={item.image} 
+            alt={item.name}
+            className="w-full h-full object-cover"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+        <div className="absolute bottom-2 left-2 right-2">
+          <h3 className="text-white font-bold text-lg drop-shadow-lg">{item.name}</h3>
+        </div>
       </div>
       <CardHeader className="pb-3">
-        <CardTitle className="text-lg">{item.name}</CardTitle>
         {item.description && (
           <CardDescription className="text-sm">{item.description}</CardDescription>
         )}

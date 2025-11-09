@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FoodItemCard } from '@/components/FoodItemCard';
 import { Cart } from '@/components/Cart';
+import { StarBackground } from '@/components/StarBackground';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { menuItems, categories, MenuItem } from '@/data/menuItems';
@@ -79,7 +80,8 @@ const Menu = () => {
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <StarBackground />
       <header className="sticky top-0 z-50 bg-gradient-to-r from-star-orange via-star-gold to-canteen-red shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -101,7 +103,7 @@ const Menu = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <Tabs defaultValue="indian-food" className="w-full">
